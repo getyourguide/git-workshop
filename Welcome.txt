@@ -1,0 +1,1 @@
+This file is part of the Git workshop repository. If you read this, chances are that you just successfully cloned the repository!
