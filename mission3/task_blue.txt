@@ -1,0 +1,24 @@
+Your task
+---------
+
+The color of the Fibonacci numbers is alternating between green and purple. Add brown to the mix, so that the list colors look like this:
+
+Purple
+Green
+Brown
+Purple
+Green
+Brown
+...
+
+Hints:
+You want to make changes to the getColorForIndex() function.
+x % y is the modulo operator, which gives you the remainder of the division x/y.
+
+
+Your partner's task
+-------------------
+
+Your partner will fix the incorrect behaviour for n = 1 where the script is displaying two numbers instead of one.
+If your partner used the slice() function to solve this task, note that it can take negative values.
+Try n = -1. 
