@@ -2,6 +2,15 @@
 
 git checkout 13f03ac201169ed718af4228f6786a3431ce64b2 # Initial commit
 
+# Delete all local branches
+git branch -D C1
+git branch -D C2
+git branch -D C3
+git branch -D C4
+git branch -D C5
+git branch -D C6
+
+
 git checkout -b C1
 git push -fu origin C1
 
