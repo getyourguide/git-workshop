@@ -1,4 +1,7 @@
 #!/bin/bash
+
+git checkout 13f03ac201169ed718af4228f6786a3431ce64b2 # Initial commit
+
 git checkout -b C1
 git push -fu origin C1
 
@@ -34,3 +37,5 @@ git checkout C5
 git checkout -b C6
 git merge --no-edit C3
 git push -fu origin C6
+
+git checkout master
