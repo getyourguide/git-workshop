@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Bookmark Manager</title>
+        <script type="text/javascript">
+            //Model
+            const bookmarkStore = {
+                readBookmarks : function () {
+                    return JSON.parse(localStorage.getItem("bookmarks")) || [];
+                },
+
+                writeBookmarks : function (bookmarks) {
+                    localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
+                    for(let i = 0; i < this.changeListeners.length; ++i) {
+                        this.changeListeners[i](this);
+                    }
+                },
+
+                addChangeListener : function (listener) {
+                    this.changeListeners.push(listener);
+                },
+
+                changeListeners : [],
+
+                addBookmark : function (url) {
+                    const bookmarks = this.readBookmarks();
+
+                    //If the URL is already in the list of bookmarks, or if it is invalid, do not add it.
+                    if (bookmarks.indexOf(url) > 0) {
+                        return;
+                    }
+
+                    bookmarks.push(url);
+                    this.writeBookmarks(bookmarks);
+                },
+
+                removeBookmark : function (url) {
+                    const bookmarks = this.readBookmarks();
+                    const urlIndex = bookmarks.indexOf(url);
+                    if (urlIndex > -1) {
+                        bookmarks.splice(urlIndex, 1);
+                    }
+                    this.writeBookmarks(bookmarks);
+                },
+
+                isValidUrl : function (url) {
+                    if (url.trim() === '') {
+                        return false;
+                    }
+                    const fakeInput = document.createElement("input");
+                    fakeInput.type = "url";
+                    fakeInput.value = url;
+                    return fakeInput.checkValidity();
+                }
+            };
+
+            //Controller
+            window.addEventListener(
+                "load",
+                function () {
+                    bookmarkStore.addChangeListener(renderBookmarks);
+                    renderBookmarks(bookmarkStore);
+
+                    document.getElementById("AddBookmarkForm").addEventListener(
+                        "submit",
+                        function (event) {
+                            event.preventDefault();
+                            const form = event.target;
+                            bookmarkStore.addBookmark(form.url.value);
+                            form.reset();
+                        }
+                    );
+                }
+            );
+
+            //View
+            function renderBookmarks(bookmarkStore) {
+                const list = document.getElementById("bookmarks");
+                while(list.hasChildNodes()) {
+                    list.removeChild(list.firstChild);
+                }
+
+                const bookmarks = bookmarkStore.readBookmarks();
+                for (let i = 0; i < bookmarks.length; ++i) {
+                    const url = bookmarks[i];
+                    const listElement = document.createElement("li");
+                    const bookmarkLink = document.createElement("a");
+                    bookmarkLink.href = url;
+                    bookmarkLink.textContent = url;
+                    bookmarkLink.target = "_blank";
+                    listElement.appendChild(bookmarkLink);
+                    const removalLink = document.createElement("a");
+                    removalLink.textContent = String.fromCharCode(0x2718);
+                    removalLink.className = "removal-link";
+                    removalLink.href = "#";
+                    removalLink.addEventListener(
+                        "click",
+                        function () {
+                            event.preventDefault();
+                            bookmarkStore.removeBookmark(url);
+                        }
+                    );
+                    listElement.appendChild(removalLink);
+                    list.appendChild(listElement);
+                }
+            }
+        </script>
+        <style type="text/css">
+            body {
+                font-family: sans-serif;
+                font-size: 1.5rem;
+            }
+
+            form {
+                display: inline;
+            }
+
+            fieldset {
+                display: inline;
+                border-radius: 1em;
+                padding: 1em;
+            }
+
+            legend {
+                font-weight: bold;
+                padding-left: 0.5em;
+                padding-right: 0.5em;
+            }
+
+            .url-input {
+                line-height: 2em;
+            }
+
+            .add-button {
+                background-color: #FF3D00;
+                color: #FFFFFF;
+                font-weight: bolder;
+                padding: 0.5em;
+            }
+
+            .removal-link {
+                color: #FF3D00;
+                text-decoration: none;
+                margin-left: 0.5em;
+            }
+
+            .removal-link:hover {
+                color: orange;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Bookmark Manager</h1>
+        <form action="#" id="AddBookmarkForm">
+            <fieldset>
+                <legend>Add a bookmark</legend>
+                <label>
+                    URL
+                    <input class="url-input" type="text" name="url"/>
+                </label>
+                <button class="add-button" type="submit">
+                    ADD!
+                </button>
+            </fieldset>
+        </form>
+        <h2>Your bookmarks</h2>
+        <ul id="bookmarks"></ul>
+    </body>
+</html>

@@ -1,24 +1,30 @@
 Your task
 ---------
 
-The color of the Fibonacci numbers is alternating between green and purple. Add brown to the mix, so that the list colors look like this:
-
-Purple
-Green
-Brown
-Purple
-Green
-Brown
-...
+The bookmark manager should not allow you to bookmark the same URL twice. The
+duplicate-detection works correctly in most cases, but there is a bug: The
+topmost URL can be bookmarked multiple times due to an implementation problem.
 
 Hints:
-You want to make changes to the getColorForIndex() function.
-x % y is the modulo operator, which gives you the remainder of the division x/y.
+You want to make changes to the addBookmark-function.
+The a.indexOf(x) returns the index of the first occurrence of x within a. The
+first element of a has index 0. If x is not in a, indexOf() returns -1. The
+current implementation has an off-by-one mistake.
+
+
 
 
 Your partner's task
 -------------------
 
-Your partner will fix the incorrect behaviour for n = 1 where the script is displaying two numbers instead of one.
-If your partner used the slice() function to solve this task, note that it can take negative values.
-Try n = -1. 
+Your partner will add a check to ensure that only proper URLs can be added to
+the list. The correct solution is to change the line
+
+"if (bookmarks.indexOf(url) > 0) {"
+
+to
+
+"if (bookmarks.indexOf(url) > 0 || !this.isValidUrl(url)) {""
+
+In the pull request, if your partner solved the task in a different way, ask
+them to change their solution.
