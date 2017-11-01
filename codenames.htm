@@ -1,0 +1,105 @@
+<html>
+<head>
+	<script>
+		const names = [
+			"Alpha",
+			"Bravo",
+			"Charlie",
+			"Delta",
+			"Echo",
+			"Foxtrot",
+			"Golf",
+			"Hotel",
+			"India",
+			"Juliett",
+			"Kilo",
+			"Lima",
+			"Mike",
+			"November",
+			"Oscar",
+			"Papa",
+			"Quebec",
+			"Romeo",
+			"Sierra",
+			"Tango",
+			"Uniform",
+			"Victor",
+			"Whiskey",
+			"X-ray",
+			"Yankee",
+			"Zulu",
+		];
+
+		window.addEventListener(
+			"load",
+			function () {
+				names.forEach(
+					function (name) {
+						const section = document.createElement("section");
+						section.textContent = name;
+						document.body.appendChild(section);
+					}
+				);
+			}
+		);
+	</script>
+	<style>
+		body {
+			margin:0;
+		}
+		section {
+			page-break-before: always;
+			writing-mode: vertical-lr;
+			text-orientation: sideways;
+			height: calc(29.7cm - 1px);
+			text-align: center;
+			font-weight: bold;
+			font-family: sans-serif;
+			font-size: calc(21.0cm / 4.5);
+			line-height: calc(21.0cm / 4.5);
+			margin-left: calc(21.0cm / 3);
+			margin-top: 0px;
+			margin-bottom: 0px;
+			padding-top:0px;
+			padding-bottom:0px;
+			padding-left:  calc((21.0cm / 3 - 21.0cm / 4.5) / 2);
+			padding-right: calc((21.0cm / 3 - 21.0cm / 4.5) / 2);
+			border-left: 2px dashed black;
+			border-right: 2px dashed black;
+			position:relative;
+		}
+
+		section:nth-child(2n) {
+			color: red;
+		}
+
+		section:nth-child(2n+1) {
+			color: blue;
+		}
+
+		section::before {
+			content: "↶ fold";
+			position:absolute;
+			top:1cm;
+			left:-2cm;
+			writing-mode: lr;
+			font-size:0.5cm;
+			line-height:0.5cm;
+			color: #000000;
+		}
+
+		section::after {
+			content: "fold ↷";
+			position:absolute;
+			top:1cm;
+			right:-2cm;
+			writing-mode: lr;
+			font-size:0.5cm;
+			line-height:0.5cm;
+			color: #000000;
+		}
+	</style>
+</head>
+<body>
+</body>
+</html>
