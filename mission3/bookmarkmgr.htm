@@ -25,6 +25,11 @@
                 addBookmark : function (url) {
                     const bookmarks = this.readBookmarks();
 
+                    //If the bookmark is not a valid URL return
+                    if (!this.,isValidUrl(url)){
+                    	return;
+                    }
+
                     //If the URL is already in the list of bookmarks, or if it is invalid, do not add it.
                     if (bookmarks.indexOf(url) > 0) {
                         return;
