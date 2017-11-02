@@ -26,7 +26,7 @@
                     const bookmarks = this.readBookmarks();
 
                     //If the URL is already in the list of bookmarks, or if it is invalid, do not add it.
-                    if (bookmarks.indexOf(url) > 0 || !this.isValidUrl(url)) {
+                    if (!this.isValidUrl(url) || bookmarks.indexOf(url) > 0) {
                         return;
                     }
 
