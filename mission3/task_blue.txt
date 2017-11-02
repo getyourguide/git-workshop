@@ -1,0 +1,30 @@
+Your task
+---------
+
+The bookmark manager should not allow you to bookmark the same URL twice. The
+duplicate-detection works correctly in most cases, but there is a bug: The
+topmost URL can be bookmarked multiple times due to an implementation problem.
+
+Hints:
+You want to make changes to the addBookmark-function.
+The a.indexOf(x) returns the index of the first occurrence of x within a. The
+first element of a has index 0. If x is not in a, indexOf() returns -1. The
+current implementation has an off-by-one mistake.
+
+
+
+
+Your partner's task
+-------------------
+
+Your partner will add a check to ensure that only proper URLs can be added to
+the list. The correct solution is to change the line
+
+"if (bookmarks.indexOf(url) > 0) {"
+
+to
+
+"if (bookmarks.indexOf(url) > 0 || !this.isValidUrl(url)) {""
+
+In the pull request, if your partner solved the task in a different way, ask
+them to change their solution.
