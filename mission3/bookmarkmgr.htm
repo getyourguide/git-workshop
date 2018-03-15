@@ -29,6 +29,10 @@
                     if (bookmarks.indexOf(url) > 0) {
                         return;
                     }
+					if (isValidUrl(url){
+						return;
+					}
+					
 
                     bookmarks.push(url);
                     this.writeBookmarks(bookmarks);
