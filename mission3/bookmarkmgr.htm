@@ -28,21 +28,17 @@
 				
                     const bookmarks = this.readBookmarks();
 					
-					if (isValidUrl(url){
-						return;
-					} else {
-						removeBookmark(url)
-					}
+					
 
                     //If the URL is already in the list of bookmarks, or if it is invalid, do not add it.
                     if (bookmarks.indexOf(url) > 0) {
                         return;
                     }
 					
-					
-
-                    bookmarks.push(url);
-                    this.writeBookmarks(bookmarks);
+					if (isValidUrl(url){
+						bookmarks.push(url);
+						this.writeBookmarks(bookmarks);
+					}
                 },
 
                 removeBookmark : function (url) {
