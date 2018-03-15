@@ -1,1 +1,6 @@
 Pascal Wacker - pwacker@student.ethz.ch
+
+
+huhu PascaL
+Hey Sara, probier mol `git blame Kilo.txt` ;)
+
