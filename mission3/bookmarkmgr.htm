@@ -31,11 +31,12 @@
 					
 
                     //If the URL is already in the list of bookmarks, or if it is invalid, do not add it.
-                    if (bookmarks.indexOf(url) > 0 || !isValidUrl(url) {
+
+                    if ((bookmarks.indexOf(url) >= 0) || !isValidUrl(url) {
                         return;
                     }
-					bookmarks.push(url);
-					this.writeBookmarks(bookmarks);
+           					bookmarks.push(url);
+				            this.writeBookmarks(bookmarks);
                 },
 
                 removeBookmark : function (url) {
