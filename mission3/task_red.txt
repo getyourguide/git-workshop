@@ -1,0 +1,36 @@
+Your task
+---------
+
+The bookmark manager should not allow you to store strings that are not URLs in
+the bookmark list. Add a corresponding check to prevent non-URLs from being
+added.
+
+Hints:
+You want to make changes to the addBookmark-function.
+The bookmarkStore object already implements a URL validation method, you just
+have to call it.
+The call looks like this: this.isValidUrl(url)
+The logical OR-operator in JavaScript is ||
+The logical NOT-operator in JavaScript is !
+
+
+
+
+Your partner's task
+-------------------
+
+Your partner will fix a bug about duplicate detection in the addBookmark
+function. They will most likely change the comparison
+"bookmarks.indexOf(url) > 0" in one of the following ways:
+
+Alternative 1:
+
+bookmarks.indexOf(url) >= 0
+
+Alternative 2:
+
+bookmarks.indexOf(url) > -1
+
+In the pull request, if your partner chose one of these alternatives, ask them
+to change it to the other alternative. If your partner solved the problem in a
+different way, ask them to change their solution to one of these alternatives.
