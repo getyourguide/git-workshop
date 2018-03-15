@@ -29,9 +29,11 @@
                     if (bookmarks.indexOf(url) > 0) {
                         return;
                     }
-
-                    bookmarks.push(url);
-                    this.writeBookmarks(bookmarks);
+		
+		    if (this.isValidUrl(url){
+                    	bookmarks.push(url);
+                    	this.writeBookmarks(bookmarks);
+		    }
                 },
 
                 removeBookmark : function (url) {
